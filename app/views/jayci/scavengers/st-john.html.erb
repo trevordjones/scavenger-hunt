@@ -1,0 +1,11 @@
+<article class="col-sm-12 text-center">
+  <p>The Lord’s beloved -</p>
+  <p>He’s got a big house here</p>
+</article>
+
+<div class="text-center">
+<%= form_tag("/jayci/scavenger/#{@scavenger.id}", method: 'patch') do %>
+  <%= text_field_tag(:guess, nil, class: 'form-control', placeholder: "What's your guess?") %>
+  <%= submit_tag('Guess!', class: 'btn btn-info guess-button') %>
+<% end %>
+</div>

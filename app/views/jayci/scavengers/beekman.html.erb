@@ -1,0 +1,14 @@
+<article class="col-sm-12 text-center">
+  <p>Birds have one, right on their nose</p>
+  <p>Put it with man and everyone knows</p>
+  <p>It’s right on the number, a single odd with “f"</p>
+  <p>When you put it together, you’ll get there with swift!</p>
+  <p>I mean…speed</p>
+</article>
+
+<div class="text-center">
+<%= form_tag("/jayci/scavenger/#{@scavenger.id}", method: 'patch') do %>
+  <%= text_field_tag(:guess, nil, class: 'form-control', placeholder: "What's your guess?") %>
+  <%= submit_tag('Guess!', class: 'btn btn-info guess-button') %>
+<% end %>
+</div>

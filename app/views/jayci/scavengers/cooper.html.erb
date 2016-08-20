@@ -1,0 +1,15 @@
+<article class="col-sm-12">
+  <ol>
+    <li>((2 * 3) * 9 + 4 / 2) / 4 - then swap the digits!</li>
+    <li>Kind of like copper but the left of the 3rd to last</li>
+    <li>number + 2 over - 1 over should be swapped with the next letter.</li>
+    <li>Lastly not round but definitely...</li>
+  </ol>
+</article>
+
+<div class="text-center">
+<%= form_tag("/jayci/scavenger/#{@scavenger.id}", method: 'patch') do %>
+  <%= text_field_tag(:guess, nil, class: 'form-control', placeholder: "What's your guess?") %>
+  <%= submit_tag('Guess!', class: 'btn btn-info guess-button') %>
+<% end %>
+</div>
