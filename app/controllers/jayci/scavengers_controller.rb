@@ -25,13 +25,15 @@ class Jayci::ScavengersController < ApplicationController
   end
 
   def update
+    @scavenger = Scavenger.find_by(id: params[:id])
     guess = params[:guess].split(' ').map(&:downcase)
     scavenger = nil
     guess.each do |g|
       scavenger = Scavenger.find_by("guesses LIKE ?", "%#{g}%")
       break if scavenger
     end
-    if scavenger
+
+    if scavenger && scavenger.id == @scavenger.id
       scavenger.update(correct: true)
       if scavenger == Scavenger.last
         redirect_to "/jayci/scavenger/done"
@@ -40,7 +42,6 @@ class Jayci::ScavengersController < ApplicationController
         redirect_to "/jayci/scavenger/#{scavenger.id + 1}"
       end
     else
-      @scavenger = Scavenger.find_by(id: params[:id])
       flash[:info] = "Not quite, Babe! Try again!"
       render clues[@scavenger.clue]
     end
@@ -49,7 +50,7 @@ class Jayci::ScavengersController < ApplicationController
   def done
     answers = Scavenger.all.map(&:correct)
     if answers.include?(false)
-      redirect_to "/jayci/scavenger/#{Scavenger.last.id}"
+      redirect_to "/jayci/scavenger/#{Scavenger.find_by(correct: false).id}"
     else
       render 'done'
     end
